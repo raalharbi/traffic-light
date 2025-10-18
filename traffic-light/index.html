@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<style>
+
+.traffic-light{
+    width:100px;
+    background-color: #333;
+    padding:20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.light{
+    width: 60px;
+    height: 60px;
+    background: #111;
+    margin: 10px;
+    border-radius: 50%;
+    opacity: 0.2;
+}
+.active{
+    opacity: 1;
+}
+.red.active{
+background: red;
+}
+.yellow.active{
+    background-color: yellow;
+    animation: blink 0.6s infinite;
+}
+.green.active{
+    background-color: green;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+</style>
+
+</head>
+
+<body>
+    <div class="traffic-light">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+
+    </div>
+
+
+</body>
+<script>
+    const lights = document.querySelectorAll('.light');
+let current = 0;
+
+function changeLight() {
+  // إزالة التفعيل عن الكل
+  lights.forEach(light => light.classList.remove('active'));
+  
+  lights[current].classList.add('active');
+  
+  current = (current + 1) % lights.length;
+}
+
+changeLight(); 
+setInterval(changeLight, 2000);
+</script>
+
+</html>
